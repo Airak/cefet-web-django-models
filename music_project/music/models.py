@@ -22,7 +22,7 @@ class EstiloMusical(models.Model):
 
 class Banda(models.Model):
 	nome = models.TextField()
-	estilo_musical = models.ForeignKey('EstiloMusical', on_delete=models.CASCADE, related_name='banda')
+	estilo_musical = models.ManyToManyField('EstiloMusical', related_name='banda')
 	musico = models.ForeignKey('Musico', on_delete=models.CASCADE, related_name='banda')
 
 	def __str__(self):
