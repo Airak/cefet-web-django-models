@@ -12,18 +12,18 @@ class Musico(models.Model):
 	data_nascimento = models.DateField()
 
 	def __str__(self):
-		return nome
+		return self.nome
 
 class EstiloMusical(models.Model):
 	nome = models.TextField()
 
 	def __str__(self):
-		return nome
+		return self.nome
 
 class Banda(models.Model):
 	nome = models.TextField()
-	estilo_musical = models.ManyToManyField('EstiloMusical', related_name='banda')
-	musico = models.ForeignKey('Musico', on_delete=models.CASCADE, related_name='banda')
+	estilo_musical = models.ForeignKey('EstiloMusical', related_name='banda', on_delete=models.PROTECT)
+	musico = models.ManyToManyField('Musico', related_name='banda')
 
 	def __str__(self):
-		return nome
+		return self.nome
